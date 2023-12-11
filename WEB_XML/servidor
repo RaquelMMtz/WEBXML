@@ -1,0 +1,20 @@
+import socket
+
+# Configuración del servidor
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8230))
+server_socket.listen(1)
+
+print("Esperando conexiones...")
+
+# Esperar a que llegue una conexión
+connection, address = server_socket.accept()
+print(f"Conexión establecida con {address}")
+
+# Enviar un mensaje al cliente
+message_to_send = "¡Hola soy Raquel!"
+connection.send(message_to_send.encode())
+
+# Cerrar la conexión
+connection.close()
+server_socket.close()
